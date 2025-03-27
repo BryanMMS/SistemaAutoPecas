@@ -10,6 +10,10 @@ public class Produto {
     @Column(name = "ID_PRODUTO")
     private long idProduto;
 
+
+    @Column(length = 100, name = "NOME")
+    private String nome;
+
     @Column(length = 100, name = "DESCRICAO")
     private String descricao;
 
@@ -25,13 +29,15 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(long idProduto, String descricao, double precoCusto, double precoVenda, int estoque) {
+    public Produto(long idProduto, String nome, String descricao, double precoCusto, double precoVenda, int estoque) {
         this.idProduto = idProduto;
+        this.nome = nome;
         this.descricao = descricao;
         this.precoCusto = precoCusto;
         this.precoVenda = precoVenda;
         this.estoque = estoque;
     }
+
 
     public long getIdProduto() {
         return idProduto;
@@ -39,6 +45,14 @@ public class Produto {
 
     public void setIdProduto(long idProduto) {
         this.idProduto = idProduto;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -73,3 +87,4 @@ public class Produto {
         this.estoque = estoque;
     }
 }
+

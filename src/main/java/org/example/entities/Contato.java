@@ -19,6 +19,10 @@ public class Contato implements Serializable {
     @JoinColumn(name = "CON_FOR_ID")
     private Fornecedor conFornecedor;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "CON_CLI_ID")
+    private Fornecedor conCliente;
 
     @Column(length = 15, name = "TELEFONE", nullable = false)
     private String telefoneContato;
@@ -32,9 +36,10 @@ public class Contato implements Serializable {
     public Contato() {
     }
 
-    public Contato(long idContato, Fornecedor conFornecedor, String telefoneContato, String nomeContato, String emailContato) {
+    public Contato(long idContato, Fornecedor conFornecedor, Fornecedor conCliente, String telefoneContato, String nomeContato, String emailContato) {
         this.idContato = idContato;
         this.conFornecedor = conFornecedor;
+        this.conCliente = conCliente;
         this.telefoneContato = telefoneContato;
         this.nomeContato = nomeContato;
         this.emailContato = emailContato;
@@ -78,5 +83,13 @@ public class Contato implements Serializable {
 
     public void setEmailContato(String emailContato) {
         this.emailContato = emailContato;
+    }
+
+    public Fornecedor getConCliente() {
+        return conCliente;
+    }
+
+    public void setConCliente(Fornecedor conCliente) {
+        this.conCliente = conCliente;
     }
 }

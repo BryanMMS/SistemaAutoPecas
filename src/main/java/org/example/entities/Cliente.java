@@ -3,6 +3,8 @@ package org.example.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente implements Serializable {
@@ -11,7 +13,11 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private long idcliente;
 
+    @OneToMany(mappedBy = "conCliente", cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "conCliente", cascade = CascadeType.ALL)
+    private List<Contato> contatos = new ArrayList<>();
 
     @Column(length = 55, name = "NOME_CLIENTE", nullable = false)
     private String nome;
@@ -29,8 +35,10 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(long idcliente, Contato contato, String nome, int cpf, LocalDate dataNascimento, String statuscliente) {
+    public Cliente(long idcliente, List<Endereco> enderecos, List<Contato> contatos, String nome, int cpf, LocalDate dataNascimento, String statuscliente) {
         this.idcliente = idcliente;
+        this.enderecos = enderecos;
+        this.contatos = contatos;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -78,4 +86,19 @@ public class Cliente implements Serializable {
     }
 
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    public List<Contato> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
+    }
 }

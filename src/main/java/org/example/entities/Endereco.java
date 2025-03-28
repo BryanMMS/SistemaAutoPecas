@@ -1,5 +1,7 @@
 package org.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,6 +11,13 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO")
     private long idEndereco;
+
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "CON_CLI_ID")
+    private Fornecedor conCliente;
+
 
     @Column(length = 255, name = "RUA", nullable = false)
     private String rua;
@@ -34,8 +43,9 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(long idEndereco, String rua, String numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
+    public Endereco(long idEndereco, Fornecedor conCliente, String rua, String numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
         this.idEndereco = idEndereco;
+        this.conCliente = conCliente;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -107,5 +117,14 @@ public class Endereco implements Serializable {
 
     public void setTipoEndereco(String tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
+    }
+
+
+    public Fornecedor getConCliente() {
+        return conCliente;
+    }
+
+    public void setConCliente(Fornecedor conCliente) {
+        this.conCliente = conCliente;
     }
 }

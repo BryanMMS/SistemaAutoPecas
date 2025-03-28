@@ -11,6 +11,8 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private long idcliente;
 
+
+
     @Column(length = 55, name = "NOME_CLIENTE", nullable = false)
     private String nome;
 
@@ -27,7 +29,7 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(long idcliente, String nome, int cpf, LocalDate dataNascimento, String statuscliente) {
+    public Cliente(long idcliente, Contato contato, String nome, int cpf, LocalDate dataNascimento, String statuscliente) {
         this.idcliente = idcliente;
         this.nome = nome;
         this.cpf = cpf;
@@ -74,4 +76,6 @@ public class Cliente implements Serializable {
     public void setStatuscliente(String statuscliente) {
         this.statuscliente = statuscliente;
     }
+
+
 }

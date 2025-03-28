@@ -29,7 +29,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(long idProduto, String nome, String descricao, double precoCusto, double precoVenda, int estoque) {
+    public Produto(long idProduto, Fornecedor fornecedor, String nome, String descricao, double precoCusto, double precoVenda, int estoque) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.descricao = descricao;
@@ -37,7 +37,6 @@ public class Produto {
         this.precoVenda = precoVenda;
         this.estoque = estoque;
     }
-
 
     public long getIdProduto() {
         return idProduto;
@@ -86,5 +85,6 @@ public class Produto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
 }
 

@@ -1,5 +1,7 @@
 package org.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,6 +12,13 @@ public class Contato implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CONTATO")
     private long idContato;
+
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "CON_FOR_ID")
+    private Fornecedor conFornecedor;
+
 
     @Column(length = 15, name = "TELEFONE", nullable = false)
     private String telefoneContato;
@@ -23,8 +32,9 @@ public class Contato implements Serializable {
     public Contato() {
     }
 
-    public Contato(long idContato, String telefoneContato, String nomeContato, String emailContato) {
+    public Contato(long idContato, Fornecedor conFornecedor, String telefoneContato, String nomeContato, String emailContato) {
         this.idContato = idContato;
+        this.conFornecedor = conFornecedor;
         this.telefoneContato = telefoneContato;
         this.nomeContato = nomeContato;
         this.emailContato = emailContato;
@@ -36,6 +46,14 @@ public class Contato implements Serializable {
 
     public void setIdContato(long idContato) {
         this.idContato = idContato;
+    }
+
+    public Fornecedor getConFornecedor() {
+        return conFornecedor;
+    }
+
+    public void setConFornecedor(Fornecedor conFornecedor) {
+        this.conFornecedor = conFornecedor;
     }
 
     public String getTelefoneContato() {
